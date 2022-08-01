@@ -2,6 +2,7 @@ class Board:
 
     def __init__(self):
         self.board = []
+        self.create_board()
 
     def create_board(self):
         for i in range(3):
@@ -50,6 +51,7 @@ class Board:
                 win = True
             i += 1
         if not win:
+            i -= 1
             while i >= 0 and not win:
                 if not self.board[i][i] == player:
                     win = False
@@ -68,5 +70,10 @@ class Board:
         return False
 
     def print_board(self):
-        for i in range(3):
-            print(self.board[i])
+        for row in self.board:
+            for item in row:
+                print(item, end=" ")
+            print()
+
+    def make_move(self, player, row, col):
+        self.board[row][col] = player
